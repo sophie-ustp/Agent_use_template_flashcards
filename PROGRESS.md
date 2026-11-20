@@ -1,6 +1,8 @@
 # Progress
 
 ## Done
+Feature 1
+Feature 2
 
 ## Next
 
