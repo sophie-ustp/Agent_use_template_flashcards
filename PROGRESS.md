@@ -3,12 +3,15 @@
 ## Done
 Feature 1
 Feature 2
+Feature 3
+Feature 4
+Feature 5
+Feature 6
 
 ## Next
-Feature 3
-Feature 4 (workout display deferred to Feature 5)
+Feature 7
 
 ## Decisions & notes
-Feature 4 selects five exercises in JavaScript; displaying them will follow in Feature 5.
+Feature 6 stores at least five exercises for each workout category and randomly selects five different exercises.
 
 ## Known problems
