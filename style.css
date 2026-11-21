@@ -54,3 +54,38 @@ button {
   cursor: pointer;
 }
 
+#exercise-list {
+  padding-left: 24px;
+}
+
+#exercise-list li {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #f0b7ca;
+  border-radius: 8px;
+}
+
+#exercise-list h3 {
+  margin: 0 0 8px;
+  color: #d63384;
+}
+
+#exercise-list img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background-color: #ffe4ec;
+  border-radius: 8px;
+}
+
+#exercise-list p {
+  margin: 8px 0 0;
+}
+
+.rest-time {
+  margin: 8px 0 16px 24px;
+  font-weight: bold;
+  color: #d63384;
+}
+
