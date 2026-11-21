@@ -93,6 +93,9 @@
       </div>
 
       <button type="submit">Generate Workout</button>
+      <p>
+        <a id="list-of-exercises-link" href="#exercise-library-view">List of Exercises</a>
+      </p>
     </form>
 
     <section id="workout-view" hidden aria-live="polite">
@@ -100,6 +103,12 @@
       <ol id="exercise-list"></ol>
       <button type="button" id="generate-again-button">Generate Again</button>
       <button type="button" id="back-button">Back to Circuit Training Generator</button>
+    </section>
+
+    <section id="exercise-library-view" hidden aria-live="polite">
+      <h2>List of Exercises</h2>
+      <ul id="exercise-library-list"></ul>
+      <button type="button" id="library-back-button">Back</button>
     </section>
   </main>
   <script src="script.js"></script>

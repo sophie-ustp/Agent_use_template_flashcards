@@ -105,3 +105,11 @@ button {
   color: #d63384;
 }
 
+#exercise-library-list {
+  padding-left: 24px;
+}
+
+#exercise-library-list li {
+  margin-bottom: 8px;
+}
+

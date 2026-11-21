@@ -35,6 +35,8 @@ Feature7. Add a "Generate Again" button to create a new random workout using the
 
 Feature8. Add a "Back" button to return to the first view and change the workout settings.
 
+Feature9. Add a link href called "List of Exercises" under Generate Workout to create a view of the list of exercises the workout is generated from  
+
 ## Acceptance criteria (how I know a feature works)
 
 - Feature1: The user must select one workout type before generating a workout. Only one option can be selected at a time.

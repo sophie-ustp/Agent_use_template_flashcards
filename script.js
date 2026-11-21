@@ -3,6 +3,10 @@ const workoutView = document.getElementById("workout-view");
 const exerciseList = document.getElementById("exercise-list");
 const generateAgainButton = document.getElementById("generate-again-button");
 const backButton = document.getElementById("back-button");
+const listOfExercisesLink = document.getElementById("list-of-exercises-link");
+const exerciseLibraryView = document.getElementById("exercise-library-view");
+const exerciseLibraryList = document.getElementById("exercise-library-list");
+const libraryBackButton = document.getElementById("library-back-button");
 
 const exercisePicture = "data:image/svg+xml;charset=UTF-8," +
   encodeURIComponent(
@@ -187,6 +191,42 @@ function handleBackToGenerator() {
   workoutForm.hidden = false;
 }
 
+// Displays every exercise that can be used to generate a workout.
+function displayExerciseLibrary() {
+  exerciseLibraryList.textContent = "";
+
+  for (const exercise of exercises) {
+    const listItem = document.createElement("li");
+    const exerciseName = document.createElement("strong");
+    const categoryName = document.createElement("span");
+
+    exerciseName.textContent = exercise.name;
+    categoryName.textContent = " (" + exercise.category + ")";
+
+    listItem.appendChild(exerciseName);
+    listItem.appendChild(categoryName);
+    exerciseLibraryList.appendChild(listItem);
+  }
+
+  workoutForm.hidden = true;
+  workoutView.hidden = true;
+  exerciseLibraryView.hidden = false;
+}
+
+// Opens the exercise library from the settings view.
+function handleListOfExercises(event) {
+  event.preventDefault();
+  displayExerciseLibrary();
+}
+
+// Returns to the settings view from the exercise library.
+function handleLibraryBack() {
+  exerciseLibraryView.hidden = true;
+  workoutForm.hidden = false;
+}
+
 workoutForm.addEventListener("submit", handleGenerateWorkout);
 generateAgainButton.addEventListener("click", handleGenerateAgain);
 backButton.addEventListener("click", handleBackToGenerator);
+listOfExercisesLink.addEventListener("click", handleListOfExercises);
+libraryBackButton.addEventListener("click", handleLibraryBack);
