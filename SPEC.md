@@ -65,4 +65,4 @@ Simple, clean, and readable website
 
 - Maximum width: 600 px
 - White background
-
+- pink font
