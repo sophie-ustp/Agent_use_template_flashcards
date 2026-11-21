@@ -47,6 +47,22 @@ input[type="number"] {
   font-size: 16px;
 }
 
+.duration-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.duration-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.duration-field label {
+  display: block;
+  font-weight: normal;
+}
+
 button {
   margin-top: 16px;
   padding: 10px 16px;

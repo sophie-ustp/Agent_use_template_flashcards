@@ -53,6 +53,21 @@ function selectExercises(workoutType) {
   return matchingExercises.slice(0, 5);
 }
 
+// Formats minutes and seconds for the workout display.
+function formatDuration(minutes, seconds) {
+  const durationParts = [];
+
+  if (minutes > 0) {
+    durationParts.push(minutes + " " + (minutes === 1 ? "minute" : "minutes"));
+  }
+
+  if (seconds > 0) {
+    durationParts.push(seconds + " " + (seconds === 1 ? "second" : "seconds"));
+  }
+
+  return durationParts.join(" ");
+}
+
 // Creates one list item for the workout display.
 function createExerciseItem(exercise, exerciseDuration) {
   const listItem = document.createElement("li");
@@ -65,7 +80,7 @@ function createExerciseItem(exercise, exerciseDuration) {
   exerciseImage.alt = exercise.name;
 
   const durationText = document.createElement("p");
-  durationText.textContent = exerciseDuration + " seconds";
+  durationText.textContent = exerciseDuration;
 
   listItem.appendChild(exerciseName);
   listItem.appendChild(exerciseImage);
@@ -106,13 +121,27 @@ function handleGenerateWorkout(event) {
     return;
   }
 
-  const exerciseDurationInput = document.getElementById("exercise-duration");
+  const exerciseMinutesInput = document.getElementById("exercise-minutes");
+  const exerciseSecondsInput = document.getElementById("exercise-seconds");
   const restTimeInput = document.getElementById("rest-time");
-  const exerciseDuration = exerciseDurationInput.value;
+  const exerciseMinutes = Number(exerciseMinutesInput.value);
+  const exerciseSeconds = Number(exerciseSecondsInput.value);
+  const exerciseDurationInSeconds = (exerciseMinutes * 60) + exerciseSeconds;
   const restTime = restTimeInput.value;
 
+  exerciseMinutesInput.setCustomValidity("");
+  exerciseSecondsInput.setCustomValidity("");
+
+  if (exerciseDurationInSeconds < 1 || exerciseDurationInSeconds > 500) {
+    exerciseSecondsInput.setCustomValidity(
+      "Choose a total duration from 1 to 500 seconds."
+    );
+    exerciseSecondsInput.reportValidity();
+    return;
+  }
+
   generatedExercises = selectExercises(selectedWorkout.value);
-  displayWorkout(exerciseDuration, restTime);
+  displayWorkout(formatDuration(exerciseMinutes, exerciseSeconds), restTime);
 }
 
 // Generates another random workout with the current settings.
@@ -120,11 +149,12 @@ function handleGenerateAgain() {
   const selectedWorkout = workoutForm.querySelector(
     'input[name="workout-type"]:checked'
   );
-  const exerciseDuration = document.getElementById("exercise-duration").value;
+  const exerciseMinutes = Number(document.getElementById("exercise-minutes").value);
+  const exerciseSeconds = Number(document.getElementById("exercise-seconds").value);
   const restTime = document.getElementById("rest-time").value;
 
   generatedExercises = selectExercises(selectedWorkout.value);
-  displayWorkout(exerciseDuration, restTime);
+  displayWorkout(formatDuration(exerciseMinutes, exerciseSeconds), restTime);
 }
 
 // Returns to the settings view and keeps the entered values.

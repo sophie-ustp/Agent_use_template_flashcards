@@ -31,17 +31,34 @@
       </fieldset>
 
       <div class="form-field">
-        <label for="exercise-duration">Select exercise duration</label>
-        <input
-          type="number"
-          id="exercise-duration"
-          name="exercise-duration"
-          min="1"
-          max="500"
-          step="1"
-          required
-        >
-        <small>Enter a whole number from 1 to 500 seconds.</small>
+        <label>Select exercise duration</label>
+        <div class="duration-fields">
+          <div class="duration-field">
+            <label for="exercise-minutes">Minutes</label>
+            <input
+              type="number"
+              id="exercise-minutes"
+              name="exercise-minutes"
+              min="0"
+              max="8"
+              step="1"
+              required
+            >
+          </div>
+          <div class="duration-field">
+            <label for="exercise-seconds">Seconds</label>
+            <input
+              type="number"
+              id="exercise-seconds"
+              name="exercise-seconds"
+              min="0"
+              max="59"
+              step="1"
+              required
+            >
+          </div>
+        </div>
+        <small>Choose a total duration from 1 to 500 seconds.</small>
       </div>
 
       <div class="form-field">
