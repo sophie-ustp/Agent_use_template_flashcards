@@ -7,9 +7,10 @@ Feature 3
 Feature 4
 Feature 5
 Feature 6
+Feature 7
 
 ## Next
-Feature 7
+Feature 8
 
 ## Decisions & notes
 Feature 6 stores at least five exercises for each workout category and randomly selects five different exercises.

@@ -1,6 +1,7 @@
 const workoutForm = document.getElementById("workout-form");
 const workoutView = document.getElementById("workout-view");
 const exerciseList = document.getElementById("exercise-list");
+const generateAgainButton = document.getElementById("generate-again-button");
 const backButton = document.getElementById("back-button");
 
 const exercisePicture = "data:image/svg+xml;charset=UTF-8," +
@@ -114,6 +115,18 @@ function handleGenerateWorkout(event) {
   displayWorkout(exerciseDuration, restTime);
 }
 
+// Generates another random workout with the current settings.
+function handleGenerateAgain() {
+  const selectedWorkout = workoutForm.querySelector(
+    'input[name="workout-type"]:checked'
+  );
+  const exerciseDuration = document.getElementById("exercise-duration").value;
+  const restTime = document.getElementById("rest-time").value;
+
+  generatedExercises = selectExercises(selectedWorkout.value);
+  displayWorkout(exerciseDuration, restTime);
+}
+
 // Returns to the settings view and keeps the entered values.
 function handleBackToGenerator() {
   workoutView.hidden = true;
@@ -121,4 +134,5 @@ function handleBackToGenerator() {
 }
 
 workoutForm.addEventListener("submit", handleGenerateWorkout);
+generateAgainButton.addEventListener("click", handleGenerateAgain);
 backButton.addEventListener("click", handleBackToGenerator);
