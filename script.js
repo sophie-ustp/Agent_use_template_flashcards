@@ -65,6 +65,10 @@ function formatDuration(minutes, seconds) {
     durationParts.push(seconds + " " + (seconds === 1 ? "second" : "seconds"));
   }
 
+  if (durationParts.length === 0) {
+    return "0 seconds";
+  }
+
   return durationParts.join(" ");
 }
 
@@ -99,7 +103,7 @@ function displayWorkout(exerciseDuration, restTime) {
     if (index < generatedExercises.length - 1) {
       const restText = document.createElement("p");
       restText.className = "rest-time";
-      restText.textContent = "Rest: " + restTime + " seconds";
+      restText.textContent = "Rest: " + restTime;
       listItem.appendChild(restText);
     }
 
@@ -123,14 +127,19 @@ function handleGenerateWorkout(event) {
 
   const exerciseMinutesInput = document.getElementById("exercise-minutes");
   const exerciseSecondsInput = document.getElementById("exercise-seconds");
-  const restTimeInput = document.getElementById("rest-time");
+  const restMinutesInput = document.getElementById("rest-minutes");
+  const restSecondsInput = document.getElementById("rest-seconds");
   const exerciseMinutes = Number(exerciseMinutesInput.value);
   const exerciseSeconds = Number(exerciseSecondsInput.value);
   const exerciseDurationInSeconds = (exerciseMinutes * 60) + exerciseSeconds;
-  const restTime = restTimeInput.value;
+  const restMinutes = Number(restMinutesInput.value);
+  const restSeconds = Number(restSecondsInput.value);
+  const restTimeInSeconds = (restMinutes * 60) + restSeconds;
 
   exerciseMinutesInput.setCustomValidity("");
   exerciseSecondsInput.setCustomValidity("");
+  restMinutesInput.setCustomValidity("");
+  restSecondsInput.setCustomValidity("");
 
   if (exerciseDurationInSeconds < 1 || exerciseDurationInSeconds > 500) {
     exerciseSecondsInput.setCustomValidity(
@@ -140,8 +149,19 @@ function handleGenerateWorkout(event) {
     return;
   }
 
+  if (restTimeInSeconds > 300) {
+    restSecondsInput.setCustomValidity(
+      "Choose a total rest time from 0 to 300 seconds."
+    );
+    restSecondsInput.reportValidity();
+    return;
+  }
+
   generatedExercises = selectExercises(selectedWorkout.value);
-  displayWorkout(formatDuration(exerciseMinutes, exerciseSeconds), restTime);
+  displayWorkout(
+    formatDuration(exerciseMinutes, exerciseSeconds),
+    formatDuration(restMinutes, restSeconds)
+  );
 }
 
 // Generates another random workout with the current settings.
@@ -151,10 +171,14 @@ function handleGenerateAgain() {
   );
   const exerciseMinutes = Number(document.getElementById("exercise-minutes").value);
   const exerciseSeconds = Number(document.getElementById("exercise-seconds").value);
-  const restTime = document.getElementById("rest-time").value;
+  const restMinutes = Number(document.getElementById("rest-minutes").value);
+  const restSeconds = Number(document.getElementById("rest-seconds").value);
 
   generatedExercises = selectExercises(selectedWorkout.value);
-  displayWorkout(formatDuration(exerciseMinutes, exerciseSeconds), restTime);
+  displayWorkout(
+    formatDuration(exerciseMinutes, exerciseSeconds),
+    formatDuration(restMinutes, restSeconds)
+  );
 }
 
 // Returns to the settings view and keeps the entered values.

@@ -15,5 +15,6 @@ Feature 8
 ## Decisions & notes
 Feature 6 stores at least five exercises for each workout category and randomly selects five different exercises.
 Exercise duration is selected with separate minute and second fields.
+Rest time is selected with separate minute and second fields.
 
 ## Known problems
